@@ -1,0 +1,18 @@
+# .github/workflows/file-update-trigger.yml
+name: Trigger on File Update
+
+on:
+  push:
+    paths:
+      - digiaTestcheck.txt # Trigger when this specific file is updated
+
+jobs:
+  run-actions:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Run some task
+        run: echo "File updated, running task..."
