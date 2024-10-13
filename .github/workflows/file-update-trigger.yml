@@ -1,10 +1,11 @@
 # .github/workflows/file-update-trigger.yml
-name: Trigger on File Update
+name: Trigger on File Update and Manual Dispatch
 
 on:
   push:
     paths:
-      - digiaTestcheck.txt # Trigger when this specific file is updated
+      - digiaTestcheck.txt  # Trigger when this specific file is updated
+  workflow_dispatch:        # Enable manual trigger
 
 jobs:
   run-actions:
@@ -15,4 +16,4 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run some task
-        run: echo "File updated, running task..."
+        run: echo "File updated or manually triggered, running task..."
