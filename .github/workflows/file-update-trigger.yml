@@ -17,3 +17,16 @@ jobs:
 
       - name: Run some task
         run: echo "File updated or manually triggered, running task..."
+        
+      - name: Send sync completion callback
+        run: |
+          curl -X PUT https://dev.digia.tech/github/callback \
+          -H "Content-Type: application/json" \
+          -d '{
+              "status": "completed",
+              "type":"GITHUBACTION",
+              "workflowId": "${{ github.workflow }}", 
+              "runId": "${{ github.run_id }}",
+              "emailId": "user@example.com" 
+            }'
+
